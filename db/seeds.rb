@@ -6,5 +6,16 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-admin = Admin.new(:email => "admin@gmail.com", :password => "123123123")
-admin.save(:validate => false)
+# admin = Admin.find_or_initialize_by(:email => "admin@gmail.com", :password => "123123123")
+# admin.save(:validate => false)
+
+
+users = [
+  {email: "user@example.com", password: '123123123', role: 'standard'}, 
+  {email: "user2@example.com", password: '123123123', role: 'admin'}, 
+]
+
+users.each do |user|
+  u = User.new(user)
+  u.save(validate: false)
+end

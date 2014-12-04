@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :posts
+
   devise_for :admins
   devise_for :users,:controllers => { :registrations => "registrations", :sessions => "sessions", :confirmations => "confirmations" }
   root :to => "homes#index"
