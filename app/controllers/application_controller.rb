@@ -22,9 +22,9 @@ class ApplicationController < ActionController::Base
   end
 
   def  after_sign_up_path_for(resource_or_scope)
-    if resource_or_scope.is_a?(User)
-      user_homes_path
-    elsif resource_or_scope.is_a?(Admin)
+    # if resource_or_scope.is_a?(User)
+    #   user_homes_path
+    if resource_or_scope.is_a?(Admin)
       admin_homes_path
     else
       homes_path
