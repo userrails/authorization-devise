@@ -1,7 +1,12 @@
+<% if @article.creatable_by?(current_user) %>
+  <%= link_to "New Article", new_article_path %>
+<% end %>
+
 <% unless @articles.blank? %>
   <% @articles.each do |article| %>
-    <% if article.readable_by?(current_user) %>
+    
     <p>
+    <% if article.readable_by?(current_user) %>
     <span>
       <%= article.name %>
     </span>
@@ -9,12 +14,17 @@
     <span>
       <%= link_to "Show Article", article_path(article) %>
     </span>
-
-    <% if article.updatable_by?(current_user) %>
+   <% end %>
+    
+     <% if article.updatable_by?(current_user) %>
       <span>
-        <% if article.updatable_by?(current_user) %>
           <%= link_to "Edit Article", edit_article_path(article) %>
-        <% end %>
+      </span>
+     <% end %>
+
+    <% if article.deletable_by?(current_user) %>
+      <span>
+        <%= link_to "Delete Article", article_path(article), :method => :delete, :data => {:confirm => "Are you sure to delete this file?"} %>
       </span>
     <% end %>
      
@@ -22,4 +32,3 @@
     <% end %>
 
   <% end %>
-<% end %>
