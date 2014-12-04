@@ -1,3 +1,4 @@
+<% if request.fullpath == "/users/sign_up" %>
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -27,3 +28,8 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+<% else %>
+   <script type="text/javascript">
+    window.location.href="/"
+  </script>
+<% end %>
