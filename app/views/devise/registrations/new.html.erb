@@ -1,4 +1,6 @@
-<% if request.fullpath == "/users/sign_up" %>
+
+<% if resource.is_a?(User) %>
+
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -7,6 +9,11 @@
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
   </div>
 
   <div class="field">
@@ -28,8 +35,5 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
-<% else %>
-   <script type="text/javascript">
-    window.location.href="/"
-  </script>
+
 <% end %>

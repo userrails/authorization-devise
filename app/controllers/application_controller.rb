@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
 
   layout :get_layout?
 
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  def configure_permitted_parameters
+      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation,:name) }
+    end
+
   def  after_sign_in_path_for(resource_or_scope)
     if resource_or_scope.is_a?(User)
       user_homes_path
