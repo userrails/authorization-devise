@@ -34,14 +34,13 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-   
     respond_with(@post)
   end
 
   private
     def set_post
       @post = Post.find(params[:id])
-      authorize_actions_for @post
+      #authorize_actions_for @post
     end
 
     def post_params
